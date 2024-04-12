@@ -41,13 +41,22 @@ class Conta {
        }
    }
 
-
+   //setter e getter de NumConta    
    public void setNumConta(int valor){
        this.NumConta = valor;
    }
-   public void setDonoConta(Cliente nome){
+   public void getNumConta(){
+       return this.NumConta;
+   }
+   
+   //setter e getter DonoConta
+   public void setDonoConta(String nome){
        this.DonoConta = nome;
    }
+   public void getNome(){
+       return this.nome;
+   }
+   
    public void setSaldoConta(double valor){
        this.SaldoConta = valor;
    }
