@@ -4,16 +4,22 @@ class Conta {
    private Cliente DonoConta; // Objeto Cliente que é o dono da conta
    private double SaldoConta; // Saldo da conta
    private double LimiteConta; // Limite da conta
-   private Operacao[] operacoes = new Operacao[1000];
+   private Operacao[] operacoes;
+   private int proximaOperacao;
+   private static int totalContas = 0;
 
 
    // Construtor padrão da classe Conta
-   public Conta() {
-       this.NumConta = -1; // Inicializa o número da conta com -1
-       this.DonoConta = new Cliente(); // Instanciando um novo objeto Cliente
-       this.DonoConta.Nome = "<INEXISTENTE>"; // Define o nome do dono como "<INEXISTENTE>"
-       this.SaldoConta = 0.0; // Inicializa o saldo como 0
-       this.LimiteConta = 0.0; // Inicializa o limite como 0
+   public Conta(int numero, Cliente dono, double saldo, double limite) {
+       this.NumConta = numero; // Inicializa o número da conta com -1
+       this.DonoConta = dono; // Instanciando um novo objeto Cliente
+       this.SaldoConta = slado; // Inicializa o saldo como 0
+       this.LimiteConta = limite; // Inicializa o limite como 0
+
+      this.operacoes = new Operacao[1000];
+        this.proximaOperacao = 0;
+
+        Conta.totalContas++;
    }
 
 
@@ -42,42 +48,40 @@ class Conta {
    }
 
    //setter e getter de NumConta    
-   public void setNumConta(int valor){
-       this.NumConta = valor;
-   }
-   public void getNumConta(){
-       return this.NumConta;
-   }
-   
-   //setter e getter DonoConta
-   public void setDonoConta(String nome){
-       this.DonoConta = nome;
-   }
-   public void getNome(){
-       return this.nome;
-   }
-   
-   public void setSaldoConta(double valor){
-       this.SaldoConta = valor;
-   }
-   public void setLimiteConta(double valor){
-       this.LimiteConta = valor;
-   }
-   
-   public void setTipo(char letra, double valor){
-       if(letra == 'd'){
-           tipo.deposito(valor);
-       }
-       if(letra == 's'){
-           tipo.saque(valor);
-       }
-       
-       this.tipo = letra;
-   }
-   
-   public Date getData(){
-       return this.data;
-   }
+  public int getNumConta() {
+        return numero;
+    }
+
+    public Cliente getDonoConta() {
+        return dono;
+    }
+
+    public double getSaldoConta() {
+        return saldo;
+    }
+
+    public double getLimiteConta() {
+        return limite;
+    }
+
+    public static int getTotalContas() {
+        return Conta.totalContas;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setDono(Cliente dono) {
+        this.dono = dono;
+    }
+
+    public void setLimite(double limite) {
+        if (limite < 0)
+            limite = 0;
+
+        this.limite = limite;
+    }
    
    public void AdicionaOperacao(char tipo, double valor) {
        // Encontrar a primeira posição vazia no array
@@ -135,13 +139,16 @@ class Conta {
    }
 
 
-   public void ImprimirExtrato(Operacao[] operacoes){
-       for(Operacao i : operacoes){
-           if(i != null){
-               System.out.printf("%1$td/%1$tm/%1$tY  %2$-5c  %3$.2f\n",i.data, i.tipo, i.valor);
-           }
-       }
-   }
+       public void imprimirExtrato() {
+        System.out.println("======= Extrato Conta " + this.NumConta + "======");
+        for(Operacao atual : this.operacoes) {
+            if (atual != null) {
+                atual.imprimir();
+            }
+        }
+        System.out.println("====================");
+    }
+
 }
 // Classe principal do programa
 public class conta{
