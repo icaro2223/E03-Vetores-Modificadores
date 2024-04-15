@@ -47,41 +47,6 @@ class Conta {
        }
    }
 
-   //setter e getter de NumConta    
-  public int getNumConta() {
-        return numero;
-    }
-
-    public Cliente getDonoConta() {
-        return dono;
-    }
-
-    public double getSaldoConta() {
-        return saldo;
-    }
-
-    public double getLimiteConta() {
-        return limite;
-    }
-
-    public static int getTotalContas() {
-        return Conta.totalContas;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public void setDono(Cliente dono) {
-        this.dono = dono;
-    }
-
-    public void setLimite(double limite) {
-        if (limite < 0)
-            limite = 0;
-
-        this.limite = limite;
-    }
    
    public void AdicionaOperacao(char tipo, double valor) {
        // Encontrar a primeira posição vazia no array
@@ -147,6 +112,43 @@ class Conta {
             }
         }
         System.out.println("====================");
+    }
+
+   
+   //setter e getter de NumConta    
+  public int getNumConta() {
+        return numero;
+    }
+
+    public Cliente getDonoConta() {
+        return dono;
+    }
+
+    public double getSaldoConta() {
+        return saldo;
+    }
+
+    public double getLimiteConta() {
+        return limite;
+    }
+
+    public static int getTotalContas() {
+        return Conta.totalContas;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setDono(Cliente dono) {
+        this.dono = dono;
+    }
+
+    public void setLimite(double limite) {
+        if (limite < 0)
+            limite = 0;
+
+        this.limite = limite;
     }
 
 }
